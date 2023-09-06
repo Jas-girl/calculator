@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .button {
+            padding: 10px;
+            box-shadow: 2px solid black;
+            font-size: 18px;
+            margin: 2px;
+        }
+    </style>
+    <script>
+        var dot = 'f';
+        var str1 = "", opr = "", no1;
+        function fun1(x) {
+
+            if (x == '.' && dot == 'f') {
+
+                dot = 't';
+                str1 = str1 + '.';
+            }
+            else {
+                if (x != '.')
+                    str1 = str1 + x;
+            }
+            document.getElementById("t1").value = str1;
+        }
+        function oper(op) {
+            if (op != '=') {
+                opr = op;
+                no1 = eval(str1);
+                str1 = "";
+                dot = 'f';
+                document.getElementById("t1").value = str1;
+            }
+            else {
+                if (opr == '+') {
+                    str1 = no1 + eval(str1);
+                }
+                else if (opr == '-') {
+                    str1 = no1 - eval(str1);
+                }
+                else if (opr == '*') {
+                    str1 = no1 * eval(str1);
+                }
+                else if (opr == '/') {
+                    str1 = no1 / eval(str1);
+                }
+                else if (opr == '%') {
+                    str1 = no1 * 100;
+                }
+                document.getElementById("t1").value = str1;
+                opr = "";
+            }
+        }
+        function clear1() {
+            str1 = "";
+            opr = "";
+            no1 = 0;
+            document.getElementById("t1").value = str1;
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1 style="left:420px;position:absolute">Calculator</h1>
+    <table style="background-color: grey ;left:40%;position:absolute;top:70px">
+        <tr>
+            <td><input type="text" style="padding:5px;width:160px;" id="t1"></td>
+        </tr>
+        <tr>
+            <td> <input type="button" value='(' class="button" onclick="fun1()">
+                <input type="button" value=')' class="button" onclick="fun1()">
+                <input type="button" value='%' class="button" onclick="oper('%')">
+                <input type="button" value="AC" onclick="clear1()">
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="button" value="7" class="button" onclick="fun1(7)">
+                <input type="button" value="8" class="button" onclick="fun1(8)">
+                <input type="button" value="9" class="button" onclick="fun1(9)">
+                <input type="button" value="*" class="button" onclick="oper('*')">
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="4" class="button" onclick="fun1(4)">
+                <input type="button" value="5" class="button" onclick="fun1(5)">
+                <input type="button" value="6" class="button" onclick="fun1(6)">
+                <input type="button" value="-" class="button" onclick="oper('-')">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="1" class="button" onclick="fun1(1)">
+                <input type="button" value="2" class="button" onclick="fun1(2)">
+                <input type="button" value="3" class="button" onclick="fun1(3)">
+                <input type="button" value="+" class="button" onclick="oper('+')">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="/" class="button" onclick="oper('/')">
+                <input type="button" value="0" class="button" onclick="fun1(0)">
+                <input type="button" value="." class="button" onclick="fun1('.')">
+                <input type="button" value="=" class="button" onclick="oper('=')">
+            </td>
+        </tr>
+        </div>
+    </table>
+</body>
+
+</html>
