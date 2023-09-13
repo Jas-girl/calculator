@@ -10,7 +10,11 @@
         * {
             box-sizing: border-box;
         }
-
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         .button {
             padding: 10px;
             box-shadow: 2px solid black;
@@ -18,13 +22,11 @@
             margin: 2px;
         }
     </style>
-    <script>
+       <script>
         var dot = 'f';
-        var str1 = "", opr = "", no1;
+        var str1 = "", opr = "", no1, firstValue = "";
         function fun1(x) {
-
             if (x == '.' && dot == 'f') {
-
                 dot = 't';
                 str1 = str1 + '.';
             }
@@ -32,40 +34,41 @@
                 if (x != '.')
                     str1 = str1 + x;
             }
-            document.getElementById("t1").value = str1;
+            document.getElementById("t1").value = firstValue + opr + str1;
         }
         function oper(op) {
             if (op != '=') {
                 opr = op;
-                no1 = eval(str1);
+                firstValue = str1;
                 str1 = "";
                 dot = 'f';
-                document.getElementById("t1").value = str1;
+                document.getElementById("t1").value = firstValue + opr;
             }
             else {
                 if (opr == '+') {
-                    str1 = no1 + eval(str1);
+                    str1 = parseFloat(firstValue) + parseFloat(str1);
                 }
                 else if (opr == '-') {
-                    str1 = no1 - eval(str1);
+                    str1 = parseFloat(firstValue) - parseFloat(str1);
                 }
                 else if (opr == '*') {
-                    str1 = no1 * eval(str1);
+                    str1 = parseFloat(firstValue) * parseFloat(str1);
                 }
                 else if (opr == '/') {
-                    str1 = no1 / eval(str1);
+                    str1 = parseFloat(firstValue) / parseFloat(str1);
                 }
                 else if (opr == '%') {
-                    str1 = no1 * 100;
+                    str1 = parseFloat(firstValue) * 100;
                 }
                 document.getElementById("t1").value = str1;
                 opr = "";
+                firstValue = "";
             }
         }
         function clear1() {
             str1 = "";
             opr = "";
-            no1 = 0;
+            firstValue = "";
             document.getElementById("t1").value = str1;
         }
 
@@ -73,8 +76,10 @@
 </head>
 
 <body>
-    <h1 style="left:420px;position:absolute">Calculator</h1>
-    <table style="background-color: grey ;left:40%;position:absolute;top:70px">
+    <div>
+    <h1>Calculator</h1>
+    
+    <table style="background-color: grey;">
         <tr>
             <td><input type="text" style="padding:5px;width:160px;" id="t1"></td>
         </tr>
@@ -121,6 +126,7 @@
         </tr>
         </div>
     </table>
+</div>
 </body>
 
 </html>
